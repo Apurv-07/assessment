@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="fetching">
+        <button onclick="clicked()">Click</button>
+    </div>
+    <script>
+        function clicked(){
+            var fet=fetch("https://reqres.in/api/users?page=2").then((res)=>{
+                console.log(res)
+                return res.json() //This also returns a promise
+            }).then((data)=>{
+                console.log(data.data)
+                var arr=data.data;
+                arr.map((element)=>{
+                    var el=document.querySelector(".fetching");
+                    console.log(element.email)
+                    var k=document.createElement('h1');
+                    k.innerHTML=element.email;
+                    el.appendChild(k);
+                    console.log(el)
+                })
+                
+            })
+        }
+    </script>
+</body>
+</html>
